@@ -13,7 +13,13 @@
 * Although the input looks like JSON, mappings are strongly typed. Changing the type of a field requires deleting and re-creating the index, which can be slow and expensive. See best practices below.
 
 ## Best practices
-* Batch updates and deletes, and check task status for result
+### Schema and data management
 * Populate all documents from a validated and highly structured schema, such as pydantic serializers
 * Be aware of service limits, such as document and field size constraints. May not be suitable for, eg, full-text document search unless your text is short (eg abstracts).
 * Field mappings are auto-determined from the first document in which a field is seen. To avoid schema issues later (such as if messy data provides a string where you expect a date), create a seed document (visible to no one) with dummy data, and make that the first document in the index. Update this seed document when the schema changes in order to "lock in" the field type.
+
+### Performance
+* Batch updates and deletes, and check task status for result
+* There are service rate limits on queries. If you are using a backend app to proxy user searches (like DGPF), ensure that you use a registered service identity. It is possible for the search team to manually increase the rate limit for your client. Otherwise, a popular web server (many users searching at once) could be rate limited!
+* Make your queries clear and targeted. There is a hard limit on number of results that can be retrieved; it's not intended to be used for dumping things to an archive!
+  * One option is to add `created/updated` fields for every record, and fetch batches via date range filters on a query
