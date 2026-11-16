@@ -1,0 +1,25 @@
+[project]
+name = "ai-hub"
+version = "0.0.0"
+description = "Dev/test tooling for the Globus agent skills. Not an installable package."
+requires-python = ">=3.12"
+
+# Intentionally empty. Scripts under packages/agent-skills/ declare their own
+# runtime dependencies as PEP 723 inline metadata (`# /// script`), so they can
+# be run standalone with `uv run <script>`.
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[tool.uv]
+# Only used to manage the dev environment; there is nothing to build or install.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Scripts are standalone files (not an importable package), so put their folder
+# on sys.path instead of adding __init__.py files along the skill's directory tree.
+pythonpath = ["packages/agent-skills/skills/globus-developer/scripts"]
