@@ -8,7 +8,7 @@ Additional tips and tricks may be found in [SYNTAX_TRICKS](authoring/SYNTAX_TRIC
 
 ## Provided scripts
 ### Flow Formatter
-Applies the [style guide](authoring/STYLE.md) formatter and runs advisory checks on a given flow definition. Run this before asking a human to review.
+Applies the formatter script and runs advisory checks on a given flow definition. Run this before asking a human to review.
 
 Usage:
 ```bash

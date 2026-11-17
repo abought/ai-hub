@@ -17,7 +17,7 @@ import json
 import sys
 
 # Key groups within a state, in output order. One blank line separates each populated
-# group from the next. Error handling is split from the rest of *where* because STYLE.md
+# group from the next. Error handling is split from the rest of *where* because format_flow.md
 # asks for a blank line between them.
 STATE_GROUPS = (
     ("Type", "ActionUrl", "End", "Error", "Cause", "Comment"),  # what
@@ -160,7 +160,7 @@ def alphabetical_parameters(obj):
     """Default ordering strategy: keys of a `Parameters` object, in output order.
 
     `__Private_Parameters` is handled separately by the caller, which always places it
-    last. STYLE.md leaves parameter order to the action provider, so this is a tool
+    last. format_flow.md leaves parameter order to the action provider, so this is a tool
     default rather than a rule from the guide -- swap in another strategy (same
     signature: object in, list of keys out) when provider-specific orders are defined.
     """
@@ -218,7 +218,7 @@ def order_choice(node):
 def check_result_paths(name, state, findings):
     """Suggest `_private` result paths for `RunAs: Flow` states.
 
-    Warning only: STYLE.md leaves the final choice to the author, so this never edits the
+    Warning only: format_flow.md leaves the final choice to the author, so this never edits the
     document. A bare `$` is exempt -- there is no key there to prefix.
     """
     if state.get("RunAs") != "Flow":
