@@ -16,3 +16,7 @@ uv run scripts/format_flow.py [infile.json] [--out name.json]
 ```
 
 If no infile is provided, read from stdin.  If no output filename is provided, writes flow to stdout. Warnings/advisories are printed to stderr.
+
+### Flows IDE Link
+Generate a link to the Globus Flows IDE. Use this tool to help a human review your flow definition. Recommend running any appropriate lint or format tools first.
+`uv run scripts/flows_ide_link.py definition.json [schema.json]`
